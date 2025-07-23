@@ -1,6 +1,7 @@
-# MACHINE LEARNING BASED CHATBOT
 
 <p align="center">
+# MACHINE LEARNING BASED CHATBOT
+</p>
   
 <!-- Add buttons here -->
 
