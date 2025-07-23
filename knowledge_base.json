@@ -1,0 +1,32 @@
+{
+  "questions": [
+    {
+      "question": "who are you?",
+      "answer": "I'm Sheevar Ai Programmed with Python Programming language!!"
+    },
+    {
+      "question": "Excellent! You're doing great!",
+      "answer": "Pleasure! Thank you so much!"
+    },
+    {
+      "question": "Who is Ziad?",
+      "answer": "Ziad, Student of class 4 of AFSC loves to play Minecraft"
+    },
+    {
+      "question": "What is Physics?",
+      "answer": "Physics is the scientific study of matter, its fundamental constituents, its motion and behavior through space and time, and the related entities of energy."
+    },
+    {
+      "question": "What is Python Programming Language?",
+      "answer": "Python is a high-level, versatile programming language known for its readability and ease of use, making it popular for both beginners and experienced developers. It's used in web development, data science, machine learning, and more. Python emphasizes code readability through its syntax, which uses indentation to define code blocks instead of curly braces or semicolons. "
+    },
+    {
+      "question": "What is the National Bird of USA?",
+      "answer": "The bald eagle is the national bird of the United States. It was officially designated as the national emblem by the U.S. Congress in 1782."
+    },
+    {
+      "question": "multiply two and two",
+      "answer": "Result: 4"
+    }
+  ]
+}
