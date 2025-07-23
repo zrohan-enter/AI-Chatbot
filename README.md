@@ -1,0 +1,1 @@
+This Python AI Chatbot is a versatile, cross-platform conversational agent. It offers multilingual support (English, Bengali, Hindi) and modular features like a medicine database, rental predictor, math solver, and text summarization. Designed for intuitive use, it provides fast, context-aware responses.
