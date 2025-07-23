@@ -4,6 +4,7 @@ This Python AI Chatbot is a versatile, cross-platform conversational agent. It o
 ### 🌲 **Project tree**
 
 
+```text
 .
 ├── CHANGELOG.md
 ├── .github
