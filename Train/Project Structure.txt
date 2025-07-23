@@ -1,0 +1,18 @@
+D:\MY Ai\CSE 299\Chatbot\
+│   main.py
+│   chatbot.py
+│   requirements.txt
+│
+├── rental_predictor.py
+├── math_solver.py
+├── nlp_processor.py
+├── knowledge_base_manager.py
+├── train_data_manager.py
+├── web_searcher.py
+├── translator.py
+├── bangla_generator.py
+├── hindi_generator.py
+├── drug_info_processor.py
+├── drug_classifier.py
+│   ...
+└── venv\

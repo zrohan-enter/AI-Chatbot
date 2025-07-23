@@ -1,0 +1,9 @@
+torch
+transformers
+sympy
+scipy
+joblib
+scikit-learn
+deep_translator
+nltk
+python-dotenv
