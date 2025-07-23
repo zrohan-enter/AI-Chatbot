@@ -1,3 +1,9 @@
+# MACHINE LEARNING BASED CHATBOT
+
+<!-- Add buttons here -->
+
+![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/navendu-pottekkat/awesome-readme?include_prereleases)
+
 This Python AI Chatbot is a versatile, cross-platform conversational agent. It offers multilingual support (English, Bengali, Hindi) and modular features like a medicine database, rental predictor, math solver, and text summarization. Designed for intuitive use, it provides fast, context-aware responses.
 
 
