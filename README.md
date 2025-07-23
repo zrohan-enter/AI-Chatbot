@@ -3,9 +3,7 @@ This Python AI Chatbot is a versatile, cross-platform conversational agent. It o
 
 ### 🌲 **Project tree**
 
-Files that will get removed after the execution of `SETUP_TEMPLATE.sh` are not shown! 
 
-```text
 .
 ├── CHANGELOG.md
 ├── .github
