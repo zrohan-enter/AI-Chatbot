@@ -1,5 +1,7 @@
 # MACHINE LEARNING BASED CHATBOT
 
+<p align="center">
+  
 <!-- Add buttons here -->
 
 ![GitHub release (latest by date including pre-releases)](https://img.shields.io/github/v/release/navendu-pottekkat/awesome-readme?include_prereleases)
