@@ -1,0 +1,112 @@
+\documentclass[a4paper,10pt,conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{enumitem}
+\usepackage{microtype}
+
+\begin{document}
+
+\title{Machine Learning-Based AI Chatbot}
+
+\author{\IEEEauthorblockN{Zawed~Bin~Tariq}
+\IEEEauthorblockA{\textit{Department of Electrical and Computer Engineering} \\
+\textit{North South University} \\
+Dhaka, Bangladesh \\
+zawed.tariq@northsouth.edu}}
+
+\maketitle
+
+\begin{abstract}
+This paper presents the design and development of a Python-based AI chatbot, enhanced to serve as a versatile, cross-platform conversational assistant. The chatbot integrates advanced language models supporting English, Bengali, and Hindi, with robust dependency management. Key features include a custom rental price prediction model, an efficient English text summarizer, and a retrieval-augmented question-answering system for a medicine database. Successfully deployed on Windows Terminal and Windows Subsystem for Linux (WSL), it ensures broad accessibility. A modular architecture with a flexible command-line interface enhances maintainability and scalability. Virtual environments ensure dependency isolation, improving portability and reproducibility across diverse setups.
+\end{abstract}
+
+\begin{IEEEkeywords}
+AI Chatbot, Machine Learning, Natural Language Processing, Multilingual Support, Rental Prediction, Text Summarization, Medicine Database, Cross-Platform Deployment, Python
+\end{IEEEkeywords}
+
+\section{Introduction}
+This Python-based AI chatbot is a multi-functional conversational assistant designed for versatility and cross-platform compatibility. It integrates advanced language models for English, Bengali, and Hindi, enhancing language understanding and conversational flow. Key features include a custom rental price prediction model trained in Google Colab for accurate forecasts of Dhaka properties and an English text summarizer using the \texttt{sshleifer/distilbart-cnn-12-6} model for concise summaries. The system incorporates a large medicine database, enabling retrieval-augmented question-answering with sentence-transformer embeddings and Faiss vector search for health-related queries. The architecture is restructured into modular Python classes, improving maintainability and scalability, with a command-line interface for streamlined task execution. Deployed on Windows Terminal and Windows Subsystem for Linux (WSL~--~Ubuntu 24.04.1), the chatbot ensures accessibility. Virtual environments provide dependency isolation, enhancing portability and reproducibility. These enhancements make the chatbot a versatile tool for real-world applications, laying a foundation for future multi-domain capabilities.
+
+\section{System Architecture and Design}
+The AI chatbot’s architecture emphasizes modularity and scalability, enabling seamless integration of diverse functionalities. It manages user input, routes it to appropriate modules based on context or commands, and generates relevant responses.
+
+\subsection{Software Components and Features}
+\begin{itemize}
+    \item \textbf{Core Chatbot Logic:} Orchestrates conversational flow, processing user input and directing it to specialized modules.
+    \item \textbf{Multilingual Support:} Incorporates advanced language models for English, Bengali, and Hindi, enabling multi-directional translation (e.g., Bengali to English).
+    \item \textbf{Rental Price Prediction Model:} A Random Forest Regressor trained in Google Colab to predict rental prices in Dhaka.
+    \begin{itemize}
+        \item \textbf{Model Type:} Uses a dataset of 46 rows with features like location, size, building position, floor level, and rating, correlated with rent.
+        \item \textbf{Performance:} Achieves a Mean Absolute Error (MAE) of \$3,000--\$5,000 and an $\mathrm{R}^2$ score of 0.85--0.90, explaining significant variance in rental prices.
+        \item \textbf{Functionality:} Saves and loads trained model and data artifacts (e.g., feature columns, location counts) for local inference.
+    \end{itemize}
+    \item \textbf{English Text Summarizer:} Provides concise summarization of English text.
+    \begin{itemize}
+        \item \textbf{Model:} Uses the \texttt{sshleifer/distilbart-cnn-12-6} model, a distilled BART optimized for summarization.
+        \item \textbf{Configuration:} Generates summaries of 30--150 tokens using beam search for coherent, information-rich outputs.
+    \end{itemize}
+    \item \textbf{Medicine Database Integration:} Enables health-related question-answering via a comprehensive medicine database.
+    \begin{itemize}
+        \item Processes a large CSV dataset with medicine details (e.g., composition, uses, side effects, manufacturers).
+        \item Employs sentence-transformer embeddings and Faiss vector search for rapid similarity retrieval.
+        \item A local Python module handles CPU-based semantic search with pre-prepared embeddings and Faiss indices.
+    \end{itemize}
+    \item \textbf{Dependency Management:} Uses Python virtual environments to isolate libraries, ensuring portability and reproducibility across Windows and WSL.
+    \item \textbf{Cross-Platform Deployment:} Supports execution on Windows Terminal and WSL.
+    \item \textbf{Command-Line Interface:} Allows direct invocation of task-based models (e.g., \texttt{-{}-medicine}, \texttt{-{}-rental}, \texttt{-{}-summarize}) for streamlined testing and deployment.
+    \item \textbf{Code Modularization:} Restructured into Python modules and classes, enhancing maintainability and scalability.
+\end{itemize}
+
+\subsection{Control Flow and Workflow}
+The chatbot’s workflow begins with user input via the command-line interface. The core logic processes the input to determine intent. If explicit commands (e.g., \texttt{-{}-medicine}, \texttt{-{}-rental}, \texttt{-{}-summarize}) or contextual cues are detected, the input is routed to the relevant module:
+\begin{itemize}
+    \item \textbf{Rental Queries:} Parsed for features (e.g., location, size), processed by the Random Forest model, and formatted as output.
+    \item \textbf{Summarization Requests:} Sent to the \texttt{sshleifer/distilbart-cnn-12-6} model for condensed output.
+    \item \textbf{Medicine Queries:} Generate embeddings, perform Faiss vector search on pre-indexed medicine data, and compose answers.
+\end{itemize}
+If no specific command or context is identified, the general conversational model ensures intuitive dialogue. The system generates context-aware responses and presents them via the command line.
+
+\section{Implementation and Discussion}
+The development process addressed challenges in data processing, model integration, and cross-platform compatibility, informed by methodologies from machine learning literature \cite{b1}.
+
+\subsection{Key Implementation Details}
+\begin{itemize}
+    \item \textbf{Rental Model Integration}: The Random Forest Regressor and artifacts were transferred from Google Colab to the local machine and integrated into \texttt{rental\_predictor.py} \cite{b1}. Preprocessing of Bangla digits resolved translation errors, and case-insensitive location parsing improved accuracy.
+    \item \textbf{Summarizer Integration}: The \texttt{transformers} library loaded the \texttt{sshleifer/distilbart-cnn-12-6} model into \texttt{chatbot.py}, triggered by \texttt{summarize english `text'}. CPU optimization reduced memory usage.
+    \item \textbf{Medicine QA System}: Sentence Transformer embeddings were generated in Colab (GPU-accelerated), with Faiss indices optimized for vector search. A local Python module enabled CPU-based semantic search.
+    \item \textbf{Environment Setup}: Deployed on WSL (Ubuntu 24.04.1), with a virtual environment (\texttt{.venv\_ws1}) and tailored Python dependencies. Bash script path issues in Windows Terminal were resolved iteratively.
+\end{itemize}
+
+\subsection{Overcoming Obstacles}
+\begin{itemize}
+    \item \textbf{Dependency Management}: Virtual environments resolved library conflicts.
+    \item \textbf{Rental Model Data Limitations}: Addressed ``limited data'' warnings by saving \texttt{location\_counts.pkl}, with \texttt{joblib} version standardization ensuring compatibility.
+    \item \textbf{Multilingual Processing}: Fixed Bangla query errors (e.g., ``750'' mistranslated to ``5'') by preprocessing digits and improving regex in \texttt{\_parse\_rental\_query}.
+    \item \textbf{Missing Dependencies}: Deferred \texttt{sentencepiece} for Bangla summarization; resolved \texttt{transformers} and \texttt{torch} errors for the summarizer.
+    \item \textbf{Dataset Handling}: Managed large medicine dataset complexity and ensured efficient embedding generation and retrieval across GPU (Colab) and CPU (local).
+\end{itemize}
+
+\subsection{Expected Outcomes and Advantages}
+The project produced a sophisticated, user-friendly, versatile AI chatbot with:
+\begin{itemize}
+    \item \textbf{Enhanced Functionality}: Accurate rental predictions, efficient summarization, and intelligent medicine query responses.
+    \item \textbf{Multilingual Capabilities}: Bengali and Hindi support alongside English for broader accessibility.
+    \item \textbf{Usability and Modularity}: Command-line parsing and modular codebase for streamlined execution and extensibility.
+    \item \textbf{Cross-Platform Compatibility}: Deployment on Windows Terminal and WSL for accessibility.
+    \item \textbf{Stable Environment}: Virtual environments for dependency isolation and reproducibility.
+\end{itemize}
+
+\section{Conclusion}
+This paper details the \textbf{comprehensive design}, \textbf{development}, and \textbf{significant enhancements} of a \textit{Python-based AI chatbot}, transforming it into a \textbf{sophisticated}, \textbf{user-friendly}, and \textbf{versatile} conversational agent. \textbf{Key achievements} include \textbf{robust} \textit{cross-platform deployment} on \textit{Windows Terminal} and \textit{WSL}, ensuring \textbf{accessibility}. The codebase, \textbf{refactored} into \textit{modular classes}, improves \textbf{maintainability} and \textbf{scalability}. \textit{Linguistic capabilities} were \textbf{expanded} with \textit{Bengali} and \textit{Hindi} models, enabling \textbf{complex calculations} and \textit{translation}. The \textbf{integration} of a \textit{rental prediction model}, \textit{text summarizer}, and \textit{medicine database system} enhances \textbf{real-world applicability}. \textit{Virtual environments} ensure \textbf{stable}, \textbf{reproducible} setups. These \textbf{advancements} provide a \textbf{strong foundation} for \textbf{future enhancements} in \textit{intelligence}, \textit{natural language generation}, and \textbf{multi-domain support}.
+
+\begin{thebibliography}{9}
+\bibitem{b1}
+Aur{\'e}lien G{\'e}ron, \textit{Hands-On Machine Learning with Scikit-Learn, Keras, and TensorFlow}, 3rd ed., O'Reilly Media, Sebastopol, CA, 2022.
+\end{thebibliography}
+
+\end{document}
