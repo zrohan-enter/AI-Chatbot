@@ -3,21 +3,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>AI Chatbot Project Report</title>
-  <style>
-    /* General styles */
-    html {
-      scroll-behavior: smooth;
-    }
-    body {
-      font-family: Arial, sans-serif;
-      margin: 2em;
-      background-color: #f7f7f7;
-      color: #333;
-      line-height: 1.6; /* Improved readability for body text */
-    }
-
-  </style>
 </head>
 <body>
 
