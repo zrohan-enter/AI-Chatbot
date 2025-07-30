@@ -2,7 +2,6 @@ import os
 import sys
 import asyncio
 from dotenv import load_dotenv
-import torch
 import warnings
 from sklearn.exceptions import InconsistentVersionWarning
 
@@ -13,7 +12,7 @@ script_dir = os.path.dirname(os.path.abspath(__file__))
 if script_dir not in sys.path:
     sys.path.insert(0, script_dir)
 
-# Import your modules (make sure these files exist)
+# Import your modules (make sure these files exist and are correct)
 from rental_predictor import RentalPredictor
 from knowledge_base_manager import KnowledgeBaseManager
 from train_data_manager import TrainDataManager
@@ -26,12 +25,12 @@ from hindi_generator import HindiGenerator
 from drug_info_processor import DrugInfoProcessor
 from drug_classifier import DrugClassifier
 
-from transformers import AutoTokenizer, AutoModelForCausalLM
-
-load_dotenv()  # Load env variables from .env if present
+load_dotenv()
 
 class Chatbot:
     def __init__(self):
+        print("Chatbot: Initializing core components (task-specific features only)...")
+
         self.knowledge_base_manager = KnowledgeBaseManager()
         self.train_data_manager = TrainDataManager()
         self.nlp_processor = NLPProcessor()
@@ -42,34 +41,47 @@ class Chatbot:
         self.translator = Translator()
         self.bangla_generator = BanglaGenerator()
         self.hindi_generator = HindiGenerator()
+
         self.rental_predictor = None
-        # Load rental predictor (handle gracefully)
         try:
+            print("Chatbot: Attempting to load RentalPredictor from model files...")
             self.rental_predictor = RentalPredictor(model_path='rental_predictor_model.pkl', columns_path='original_X_columns.pkl')
-        except Exception:
+            print("Chatbot: RentalPredictor loaded from model files.")
+        except Exception as e:
+            print(f"Chatbot: Warning: RentalPredictor could not be initialized from model files: {e}")
             try:
+                print("Chatbot: Attempting to initialize RentalPredictor from raw data...")
                 self.rental_predictor = RentalPredictor(data_path='rental_data.csv')
-            except Exception:
+                print("Chatbot: RentalPredictor initialized from data path.")
+            except Exception as e:
+                print(f"Chatbot: Error: RentalPredictor could not be initialized from data either: {e}")
                 self.rental_predictor = None
+                print("Chatbot: Rental predictor unavailable.")
 
-        # Load dialoGPT for conversation (optional)
-        try:
-            self.dialogpt_tokenizer = AutoTokenizer.from_pretrained("microsoft/DialoGPT-small")
-            self.dialogpt_model = AutoModelForCausalLM.from_pretrained("microsoft/DialoGPT-small")
-            self.dialogpt_chat_history_ids = None
-        except Exception:
-            self.dialogpt_tokenizer = None
-            self.dialogpt_model = None
-            self.dialogpt_chat_history_ids = None
+    async def async_run(self, history_manager=None):
+        """
+        Basic interactive mode (placeholder).
+        Can pass a ChatHistoryManager instance to save history automatically.
+        """
+        print("Type 'exit' or 'quit' to stop.")
 
-    # Interactive mode (optional)
-    async def async_run(self):
-        #print("Chatbot interactive mode is not supported in this minimal version.")
-        #print("Please use commands with arguments in the CLI instead.")
-        return
+        while True:
+            user_input = input("You: ").strip()
+            if user_input.lower() in ["exit", "quit"]:
+                print("Chatbot: Goodbye!")
+                break
+            if not user_input:
+                continue
+            # For now, this mode only prints a placeholder message until chat functionality is added.
+            print("Bot: Please use command-specific queries via CLI or implement handlers for this mode.")
+            # If you want to add real response generation, insert it here and save QA:
+            # Example:
+            # response = await self.get_response(user_input)
+            # print(f"Bot: {response}")
+            # if history_manager:
+            #     history_manager.save_qa(user_input, response)
 
-    # Task-specific methods:
-
+    # Task-specific async methods
     async def get_rent_prediction(self, location: str, size_sqft: int, position='front', floor=None, rating=None) -> str:
         if not self.rental_predictor:
             return "Rental predictor unavailable."
@@ -77,7 +89,7 @@ class Chatbot:
             rent = self.rental_predictor.predict_rental_price(location, size_sqft, position, floor, rating)
             return f"Estimated rent for {size_sqft} sqft at {location} ({position}) is {rent:.2f} BDT."
         except Exception as e:
-            return f"Error: {e}"
+            return f"Error in rental prediction: {e}"
 
     async def solve_math_expression(self, expression: str) -> str:
         return self.math_solver.solve_math(expression)
@@ -97,7 +109,7 @@ class Chatbot:
     def classify_drug(self, drug_name: str) -> str:
         drug_info = self.drug_info_processor.drug_data.get(drug_name.lower())
         if not drug_info:
-            return f"No data to classify {drug_name}."
+            return f"No data available to classify {drug_name}."
         features = {
             'activity': drug_info.get('activity', ''),
             'drug_classes': drug_info.get('drug_classes', '')

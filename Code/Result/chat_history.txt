@@ -1,0 +1,43 @@
+Q: Solve Math: 2 * (3 + 5)
+A: Result: 16
+
+Q: Translate from English: How are you? to bn
+A: কেমন আছেন?
+
+Q: Predict Rent: Location=Dhanmondi, Size=1200, Position=front, Floor=3, Rating=4.5
+A: Estimated rent for 1200 sqft at Dhanmondi (front) is 33490.00 BDT.
+
+Q: Predict Rent: Location=Gulshan, Size=1100, Position=front, Floor=3, Rating=4.5
+A: Estimated rent for 1100 sqft at Gulshan (front) is 31520.00 BDT.
+
+Q: hey
+A: <think>
+Okay, the user said "hey". I need to respond appropriately. Let me start by acknowledging their greeting. I should keep the tone friendly and open. Maybe ask how they're doing? That's a common way to respond to a greeting. Also, offer assistance. Let me make sure the response is concise and not too long. Avoid any markdown, just plain text. Alright, that should cover it.
+</think>
+
+Hello! How can I assist you today? 😊
+
+Q: How is the day?
+A: <think>
+Okay, the user asked, "How is the day?" I need to respond appropriately. Let me think about how to approach this.
+
+First, the user might be asking about my experience or the current state of the day. But since I'm an AI, I don't have a physical day or a personal experience. I should clarify that I don't have a day in the traditional sense. However, I can talk about the day's activities or the time it takes to process a query.
+
+Wait, the user might be using "day" in a different context. Maybe they're asking how the day is going for them, but they didn't specify. Since I don't have a personal life, I should explain that I don't have a day, but I can help them with anything they need.
+
+I should make sure to be polite and helpful. Maybe offer to assist them with their questions or tasks. Also, check if there's a misunderstanding. For example, if they meant the day they're currently on, but I can't know that. So, the best approach is to explain my limitations and offer assistance.
+
+I need to keep the response friendly and open-ended. Let me structure it: acknowledge the question, explain I don't have a day, offer help with their needs, and invite them to ask more if they have questions.
+</think>
+
+I'm sorry, but I don't have a personal experience or a "day" in the traditional sense. As an AI, I don't have feelings, consciousness, or a physical presence. However, I can help you with anything you need! Whether it's answering questions, helping with tasks, or just chatting, I'm here to assist. How can I help you today? 😊
+
+Q: 
+A: <think>
+Okay, the user just sent a message, and I need to respond. Let me check the history. The previous message was "How is the day?" and the response was that I don't have a personal experience. Now the user hasn't sent anything else, so I need to figure out the best way to respond.
+
+Hmm, maybe the user is testing if I can handle a follow-up. Since they didn't provide a new question, I should keep the response friendly and offer help. I should mention that I don't have a day but am here to assist. Maybe add an emoji to keep it light. Also, make sure to invite them to ask anything. Let me put that together.
+</think>
+
+I'm here to help! 😊 If you have any questions, need assistance, or just want to chat, feel free to ask. I'm always ready to support you! What's on your mind?
+
